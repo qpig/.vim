@@ -134,6 +134,8 @@ Bundle 'vim-scripts/sessionman.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 "auto-pair插件 自动输入成对括号
 Bundle 'jiangmiao/auto-pairs'
+"syntastic插件 语法检查
+Bundle 'scrooloose/syntastic'
 
 call vundle#end()
 "Vundle配置完成后设置 开启插件
