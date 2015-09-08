@@ -9,9 +9,18 @@ fi
 rm ~/.vimrc &>/dev/null
 ln -s ~/.vim/.vimrc ~/.vimrc
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim -u ~/.vimrc +set nomore +BundleInstall! +BundleClean +qall
+touch ~/.vim/.vimrc.local
 
-cd ~/.vim/bundle/YouCompleteMe && (./install.py --clang-completer ; cd -)
-cd ~/.vim/bundle/fonts && (install.sh ; cd -)
+mtype=`uname -m`
+if [[ "$mtype" != "ppc64le" ]]; then
+    echo "let g:support_ycm=true" >> ~/.vim/.vimrc.local
+fi
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim -u ~/.vimrc +BundleInstall +BundleClean +qall
+
+if [[ "$mtype" != "ppc64le" ]]; then
+    cd ~/.vim/bundle/YouCompleteMe && (./install.py --clang-completer ; cd -) #not support ppc64, sorry
+fi
+#cd ~/.vim/bundle/fonts && (install.sh ; cd -)
 echo "安装完成"

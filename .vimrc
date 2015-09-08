@@ -1,6 +1,7 @@
 "==================================
 "    Vim基本配置
 "===================================
+source ~/.vim/.vimrc.local
 
 "关闭vi的一致性模式 避免以前版本的一些Bug和局限
 set nocompatible
@@ -110,8 +111,10 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 "Tasklist插件 非常方便的一个Todo list工具
 Bundle 'vim-scripts/TaskList.vim'
-"YouCompleteMe插件 编译器clang支持的代码补全
-Bundle 'Valloric/YouCompleteMe'
+if exists('g:support_ycm')
+    "YouCompleteMe插件 编译器clang支持的代码补全
+    Bundle 'Valloric/YouCompleteMe'
+endif
 "UltiSnips插件 代码片段补全
 Bundle 'SirVer/ultisnips'
 "snippets插件 代码片段补全
@@ -183,13 +186,15 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
 "指定任务列表窗口在下方
 let g:tlWindowPosition = 1
 
-"YouCompleteMe 配置
-"设置默认配置文件
-let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
-"设置错误符号为">e"
-let g:ycm_error_symbol = '>e'
-"设置警告符号为">w"
-let g:ycm_warning_symbol = '>w'
+if exists('g:support_ycm')
+    "YouCompleteMe 配置
+    "设置默认配置文件
+    let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
+    "设置错误符号为">e"
+    let g:ycm_error_symbol = '>e'
+    "设置警告符号为">w"
+    let g:ycm_warning_symbol = '>w'
+endif
 
 "airline 配置
 "始终显示状态栏
