@@ -9,11 +9,11 @@ fi
 rm ~/.vimrc &>/dev/null
 ln -s ~/.vim/.vimrc ~/.vimrc
 
-touch ~/.vim/.vimrc.local
+echo "" > ~/.vim/.vimrc.local
 
 mtype=`uname -m`
 if [[ "$mtype" != "ppc64le" ]]; then
-    echo "let g:support_ycm=true" >> ~/.vim/.vimrc.local
+    echo "let g:support_ycm=\"true\"" >> ~/.vim/.vimrc.local
 fi
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
